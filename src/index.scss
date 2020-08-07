@@ -1,0 +1,9 @@
+$base-color: #b4abab;
+
+@for $i from 1 through 64 {
+  @if $i%2 == 0 {
+    .grid-item:nth-child($i) {
+      background-color: $base-color;
+    }
+  }
+}
