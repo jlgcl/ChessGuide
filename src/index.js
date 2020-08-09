@@ -13,7 +13,8 @@
         - create player objects containing # of pieces & # of downpieces.
 */
 
-import { initialPlacement } from "initialPlacement.js";
+import { initialPlacement } from "./initialPlacement";
+import { playerBlack, playerWhite } from "./players";
 
 var boardBox = document.getElementsByClassName("grid-item");
 
@@ -28,29 +29,17 @@ var board = [
   [57, 58, 59, 60, 61, 62, 63, 64],
 ];
 
-var boardPieces = [
-  [1, 2, 3, 4, 5, 6, 7, 8],
-  [9, 10, 11, 12, 13, 14, 15, 16],
-  [17, 18, 19, 20, 21, 22, 23, 24],
-  [25, 26, 27, 28, 29, 30, 31, 32],
-  [33, 34, 35, 36, 37, 38, 39, 40],
-  [41, 42, 43, 44, 45, 46, 47, 48],
-  [49, 50, 51, 52, 53, 54, 55, 56],
-  [57, 58, 59, 60, 61, 62, 63, 64],
-];
-
-// modularize later
-const playerBlack = {
-  pieces: ["king", "queen", "bishop", "knight", "castle", "pawn"],
-  //piecesWon: ,
-  //piecesLost: ,
-};
-
-const playerWhite = {
-  pieces: ["king", "queen", "bishop", "knight", "castle", "pawn"],
-  //piecesWon: ,
-  //piecesLost: ,
-};
+// May not need
+// var boardPieces = [
+//   [1, 2, 3, 4, 5, 6, 7, 8],
+//   [9, 10, 11, 12, 13, 14, 15, 16],
+//   [17, 18, 19, 20, 21, 22, 23, 24],
+//   [25, 26, 27, 28, 29, 30, 31, 32],
+//   [33, 34, 35, 36, 37, 38, 39, 40],
+//   [41, 42, 43, 44, 45, 46, 47, 48],
+//   [49, 50, 51, 52, 53, 54, 55, 56],
+//   [57, 58, 59, 60, 61, 62, 63, 64],
+// ];
 
 function pawnMove(coordinate) {
   // find index of current coordinate (not simple as using just indexOf)
@@ -60,3 +49,5 @@ function pawnMove(coordinate) {
 function gameControl() {
   initialPlacement();
 }
+
+export { board, boardBox };
