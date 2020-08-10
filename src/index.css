@@ -1,1 +1,116 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 70px 70px 70px 70px 70px 70px 70px 70px;
+  grid-template-rows: 70px 70px 70px 70px 70px 70px 70px 70px;
+  background-color: white;
+  padding: 10px;
+  grid-gap: 3px;
+  position: relative;
+  left: 30%;
+  margin-top: 20px; }
 
+.grid-item {
+  background-color: #f1ebeb;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center; }
+
+.grid-item:nth-child(2) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(4) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(6) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(8) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(18) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(20) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(22) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(24) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(34) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(36) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(38) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(40) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(50) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(52) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(54) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(56) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(9) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(11) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(13) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(15) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(25) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(27) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(29) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(31) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(41) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(43) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(45) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(47) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(57) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(59) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(61) {
+  background-color: #dad6d6; }
+
+.grid-item:nth-child(63) {
+  background-color: #dad6d6; }
+
+/*# sourceMappingURL=index.css.map */

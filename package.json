@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/jlgcl/ChessGuide#readme",
   "devDependencies": {
     "file-loader": "^6.0.0",
+    "jest": "^26.2.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }

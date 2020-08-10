@@ -1,8 +1,84 @@
-$base-color: #b4abab;
+$base-color: #dad6d6;
 
-@for $i from 1 through 64 {
+.grid-container {
+  display: grid;
+  grid-template-columns: 70px 70px 70px 70px 70px 70px 70px 70px;
+  grid-template-rows: 70px 70px 70px 70px 70px 70px 70px 70px;
+  background-color: white;
+  padding: 10px;
+  grid-gap: 3px;
+  position: relative;
+  left: 30%;
+  margin-top: 20px;
+}
+
+.grid-item {
+  background-color: #f1ebeb;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+@for $i from 1 through 8 {
   @if $i%2 == 0 {
-    .grid-item:nth-child($i) {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+
+@for $i from 17 through 24 {
+  @if $i%2 == 0 {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+@for $i from 33 through 40 {
+  @if $i%2 == 0 {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+
+@for $i from 49 through 56 {
+  @if $i%2 == 0 {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+
+@for $i from 9 through 16 {
+  @if $i%2 != 0 {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+
+@for $i from 25 through 32 {
+  @if $i%2 != 0 {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+
+@for $i from 41 through 48 {
+  @if $i%2 != 0 {
+    .grid-item:nth-child(#{$i}) {
+      background-color: $base-color;
+    }
+  }
+}
+
+@for $i from 57 through 64 {
+  @if $i%2 != 0 {
+    .grid-item:nth-child(#{$i}) {
       background-color: $base-color;
     }
   }
