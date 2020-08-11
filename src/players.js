@@ -12,30 +12,33 @@ import knightWhite from "../pieces/knightWhite.png";
 import castleWhite from "../pieces/castleWhite.png";
 import pawnWhite from "../pieces/pawnWhite.png";
 
-const playerBlack = {
-  pieces: [
-    kingBlack,
-    queenBlack,
-    bishopBlack,
-    knightBlack,
-    castleBlack,
-    pawnBlack,
-  ],
-  //piecesWon: ,
-  //piecesLost: ,
-};
+function Player(king, queen, bishop, knight, castle, pawn) {
+  this.pieces = {
+    king,
+    queen,
+    bishop,
+    knight,
+    castle,
+    pawn,
+  };
+}
 
-const playerWhite = {
-  pieces: [
-    kingWhite,
-    queenWhite,
-    bishopWhite,
-    knightWhite,
-    castleWhite,
-    pawnWhite,
-  ],
-  //piecesWon: ,
-  //piecesLost: ,
-};
+const playerBlack = new Player(
+  kingBlack,
+  queenBlack,
+  bishopBlack,
+  knightBlack,
+  castleBlack,
+  pawnBlack
+);
+
+const playerWhite = new Player(
+  kingWhite,
+  queenWhite,
+  bishopWhite,
+  knightWhite,
+  castleWhite,
+  pawnWhite
+);
 
 export { playerBlack, playerWhite };

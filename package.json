@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jlgcl/ChessGuide#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
     "file-loader": "^6.0.0",
     "jest": "^26.2.2",
     "webpack": "^4.44.1",

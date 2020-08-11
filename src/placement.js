@@ -6,5 +6,3 @@ export function placePiece(gridNum, imgSrc) {
   let boardArr = Array.from(boardBox);
   return boardArr[gridNum - 1].appendChild(pieceImg);
 }
-
-//module.exports = placePiece;

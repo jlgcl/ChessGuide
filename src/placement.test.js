@@ -1,4 +1,4 @@
-const placement = require("./placement");
+import { placement } from "./placement";
 
 test("testing chess piece image source", () => {
   placement(3, "../pieces/knightBlack.png");

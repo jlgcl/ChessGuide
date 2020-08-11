@@ -41,11 +41,21 @@ function gameControl() {
 
   var boardArr = Array.from(boardBox);
 
+  var currentGrid = "";
+  var currentPiece = "";
+  var targetGrid = "";
+
   boardArr.forEach((grid) => {
     grid.addEventListener("click", (e) => {
-      if (e.target !== null) {
-        movePiece(e.target.getAttribute("src"), e.target.parentNode);
-        //console.log(e.target.parentNode == boardArr[3]);
+      // if a piece is clicked
+      if (e.target.src !== undefined) {
+        currentGrid = e.target.parentNode;
+        currentPiece = e.target.getAttribute("src");
+      }
+      // if an empty grid is clicked
+      if (e.target.src === undefined && currentPiece !== "") {
+        targetGrid = e.target;
+        movePiece(currentPiece, currentGrid, targetGrid);
       }
     });
   });
