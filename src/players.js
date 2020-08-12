@@ -1,4 +1,4 @@
-// import image sources
+// import image sources (webpack file loader)
 import kingBlack from "../pieces/kingBlack.png";
 import queenBlack from "../pieces/queenBlack.png";
 import bishopBlack from "../pieces/bishopBlack.png";

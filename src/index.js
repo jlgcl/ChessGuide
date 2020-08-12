@@ -56,6 +56,10 @@ function gameControl() {
       if (e.target.src === undefined && currentPiece !== "") {
         targetGrid = e.target;
         movePiece(currentPiece, currentGrid, targetGrid);
+        // resets the selections to avoid creating piece at new target
+        currentPiece = "";
+        currentGrid = "";
+        targetGrid = "";
       }
     });
   });

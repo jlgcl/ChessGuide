@@ -1,14 +1,15 @@
 import { board, boardBox } from "./index.js";
 import { playerBlack, playerwhite } from "./players.js";
+import { pawnMove } from "./PieceMoves/pawnMove.js";
 
-export function movePiece(piece, currentGrid, targetGrid) {
+function movePiece(piece, currentGrid, targetGrid) {
   let boardArr = Array.from(boardBox);
   let indices = domIndex(boardArr, currentGrid, targetGrid);
 
-  pawnMove(boardArr, indices.currentIndex, indices.targetIndex);
+  pawnMove(piece, boardArr, indices.currentIndex, indices.targetIndex);
 }
 
-// obtains the numeric indices of the DOM grid locations
+// obtains the numeric indices of the DOM grid locations (boardArr)
 function domIndex(boardArr, currentGrid, targetGrid) {
   let currentIndex = "";
   let targetIndex = "";
@@ -26,7 +27,15 @@ function domIndex(boardArr, currentGrid, targetGrid) {
   return { currentIndex, targetIndex }; // return as object
 }
 
-// move rules for pawns
-function pawnMove(boardArr, currentIndex, targetIndex) {
-  // code to find index of the DOM indices in the 2D board reference array.
+// method to find index of the DOM indices in the 2D board reference array.
+function indexFinder(board, index) {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === index) {
+        return { i, j };
+      }
+    }
+  }
 }
+
+export { movePiece, indexFinder };
