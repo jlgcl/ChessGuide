@@ -31,30 +31,36 @@ var board = [
   [57, 58, 59, 60, 61, 62, 63, 64],
 ];
 
-function pawnMove(coordinate) {
-  // find index of current coordinate (not simple as using just indexOf)
-  return;
-}
-
 function gameControl() {
   initialPlacement();
 
   var boardArr = Array.from(boardBox);
 
+  // currentGrid (origin) & targetGrid (target)
   var currentGrid = "";
   var currentPiece = "";
   var targetGrid = "";
 
   boardArr.forEach((grid) => {
     grid.addEventListener("click", (e) => {
-      // if a piece is clicked
-      if (e.target.src !== undefined) {
+      // if a piece is clicked & currentPiece is not yet defined
+      if (e.target.src !== undefined && currentPiece === "") {
         currentGrid = e.target.parentNode;
         currentPiece = e.target.getAttribute("src");
+      }
+      // if a piece is clicked & currentPiece is already defined
+      else if (e.target.src !== undefined && currentPiece !== "") {
+        targetGrid = e.target.parentNode;
+        //console.log(currentGrid, currentPiece, targetGrid);
+        movePiece(currentPiece, currentGrid, targetGrid);
+        currentPiece = "";
+        currentGrid = "";
+        targetGrid = "";
       }
       // if an empty grid is clicked
       if (e.target.src === undefined && currentPiece !== "") {
         targetGrid = e.target;
+        //console.log(currentGrid, currentPiece, targetGrid);
         movePiece(currentPiece, currentGrid, targetGrid);
         // resets the selections to avoid creating piece at new target
         currentPiece = "";

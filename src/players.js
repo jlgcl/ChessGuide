@@ -21,6 +21,7 @@ function Player(king, queen, bishop, knight, castle, pawn) {
     castle,
     pawn,
   };
+  this.piecesWon = {};
 }
 
 const playerBlack = new Player(

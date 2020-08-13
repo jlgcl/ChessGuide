@@ -6,7 +6,13 @@ function movePiece(piece, currentGrid, targetGrid) {
   let boardArr = Array.from(boardBox);
   let indices = domIndex(boardArr, currentGrid, targetGrid);
 
-  pawnMove(piece, boardArr, indices.currentIndex, indices.targetIndex);
+  pawnMove(
+    piece,
+    boardArr,
+    indices.currentIndex,
+    indices.targetIndex,
+    targetGrid
+  );
 }
 
 // obtains the numeric indices of the DOM grid locations (boardArr)
