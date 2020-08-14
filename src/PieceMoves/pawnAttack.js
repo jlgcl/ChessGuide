@@ -1,4 +1,5 @@
-import { playerBlack, playerwhite } from "../players.js";
+import { playerwhite } from "../players.js";
+import { pawnAttackMove } from "./pawnAttackMove";
 
 export function pawnAttack(
   piece,
@@ -11,44 +12,48 @@ export function pawnAttack(
 ) {
   let blackAttackTarget_a = board[current_i + 1][current_j + 1];
   let blackAttackTarget_b = board[current_i + 1][current_j - 1];
+  let whiteAttackTarget_a = board[current_i - 1][current_j + 1];
+  let whiteAttackTarget_b = board[current_i - 1][current_j - 1];
 
   // try to refractor the code below later (let ... = ...., w/o if statements)
-  let targetPiece_a = "";
-  let targetPiece_b = "";
+  let blackTargetPiece_a = "";
+  let blackTargetPiece_b = "";
+  let whiteTargetPiece_a = "";
+  let whiteTargetPiece_b = "";
   if (boardArr[blackAttackTarget_a].childNodes[0] !== undefined) {
-    targetPiece_a = boardArr[blackAttackTarget_a].childNodes[0].getAttribute(
-      "src"
-    );
+    blackTargetPiece_a = boardArr[
+      blackAttackTarget_a
+    ].childNodes[0].getAttribute("src");
   }
   if (boardArr[blackAttackTarget_b].childNodes[0] !== undefined) {
-    targetPiece_b = boardArr[blackAttackTarget_b].childNodes[0].getAttribute(
-      "src"
-    );
+    blackTargetPiece_b = boardArr[
+      blackAttackTarget_b
+    ].childNodes[0].getAttribute("src");
   }
-  console.log(boardArr[blackAttackTarget_a], boardArr[targetGrid]);
-  // check: if target piece is white, target grid is not empty, target grid is top-right/top-left of the current location
-  if (
-    (!playerCheck(targetPiece_a) || !playerCheck(targetPiece_b)) &&
-    (boardArr[blackAttackTarget_a].innerHTML !== undefined ||
-      boardArr[blackAttackTarget_b].innerHTML !== undefined) &&
-    (boardArr[targetIndex] === boardArr[blackAttackTarget_a] ||
-      boardArr[targetIndex] === boardArr[blackAttackTarget_b])
-  ) {
-    boardArr[board[current_i][current_j]].innerHTML = "";
-    boardArr[targetIndex].innerHTML = "";
-    let image = document.createElement("img");
-    image.src = piece;
-    boardArr[targetIndex].appendChild(image);
+  if (boardArr[whiteAttackTarget_a].childNodes[0] !== undefined) {
+    whiteTargetPiece_a = boardArr[
+      whiteAttackTarget_a
+    ].childNodes[0].getAttribute("src");
   }
-}
+  if (boardArr[whiteAttackTarget_b].childNodes[0] !== undefined) {
+    whiteTargetPiece_b = boardArr[
+      whiteAttackTarget_b
+    ].childNodes[0].getAttribute("src");
+  }
 
-function playerCheck(piece) {
-  // test if the piece belongs to playerBlack
-  for (const ind of Object.keys(playerBlack.pieces)) {
-    if (playerBlack.pieces[ind] === piece) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  pawnAttackMove(
+    piece,
+    current_i,
+    current_j,
+    boardArr,
+    targetIndex,
+    blackTargetPiece_a,
+    blackTargetPiece_b,
+    whiteTargetPiece_a,
+    whiteTargetPiece_b,
+    blackAttackTarget_a,
+    blackAttackTarget_b,
+    whiteAttackTarget_a,
+    whiteAttackTarget_b
+  );
 }

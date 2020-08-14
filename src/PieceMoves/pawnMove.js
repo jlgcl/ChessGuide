@@ -3,6 +3,7 @@ import { indexFinder } from "../movePiece";
 import { board } from "../index";
 import { playerWhite, playerBlack } from "../players";
 import { pawnAttack } from "../PieceMoves/pawnAttack";
+import { pawnMoveCheck } from "./pawnMoveCheck";
 
 export function pawnMove(
   piece,
@@ -15,21 +16,20 @@ export function pawnMove(
   let current_j = indexFinder(board, currentIndex).j;
   let target_i = indexFinder(board, targetIndex).i;
   let target_j = indexFinder(board, targetIndex).j;
-  let playerDet = false;
+  let playerDet = false; // piece is not player black
 
   // test if the piece belongs to playerBlack
   for (const ind of Object.keys(playerBlack.pieces)) {
-    if (playerBlack.pieces[ind] === piece) {
+    if (Object.values(playerBlack.pieces).includes(piece)) {
       playerDet = true;
     }
   }
-
   // if player is black, the source piece is removed, the two grids ahead (max movement) is defined, no piece blocking the path
   if (
     playerDet &&
     board[current_i + 2] &&
     current_j === target_j &&
-    board[target_i] <= board[current_i + 2]
+    board[target_i][current_j] <= board[current_i + 2][current_j]
   ) {
     if (
       pawnMoveCheck(playerDet, board, boardArr, current_i, current_j, target_i)
@@ -48,9 +48,9 @@ export function pawnMove(
   // if player is white
   else if (
     !playerDet &&
-    board[current_i - 2] &&
+    board[current_i - 2] !== undefined &&
     current_j === target_j &&
-    board[target_i] >= board[current_i - 2]
+    board[target_i][current_j] >= board[current_i - 2][current_j]
   ) {
     if (
       pawnMoveCheck(playerDet, board, boardArr, current_i, current_j, target_i)
@@ -76,33 +76,4 @@ export function pawnMove(
     targetIndex,
     targetGrid
   );
-}
-
-// checks if another piece is blocking the move path
-function pawnMoveCheck(
-  playerDet,
-  board,
-  boardArr,
-  current_i,
-  current_j,
-  target_i
-) {
-  let k = current_i;
-  while (k < target_i && playerDet) {
-    k++;
-    if (boardArr[board[k][current_j]].innerHTML !== "") {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  while (k > target_i && !playerDet) {
-    k--;
-    if (boardArr[board[k][current_j]].innerHTML !== "") {
-      return false;
-    } else {
-      return true;
-    }
-  }
 }
