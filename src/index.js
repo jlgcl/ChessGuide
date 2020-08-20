@@ -16,19 +16,20 @@
 import { initialPlacement } from "./initialPlacement";
 import { playerBlack, playerWhite } from "./players";
 import { movePiece } from "./movePiece";
+import { playerCheck } from "./PieceMoves/playerCheck";
 
 var boardBox = document.getElementsByClassName("grid-item");
 
-// board layout reference
+// board layout reference - IMPORTANT: keep the index numbers as the same as boardBox
 var board = [
-  [1, 2, 3, 4, 5, 6, 7, 8],
-  [9, 10, 11, 12, 13, 14, 15, 16],
-  [17, 18, 19, 20, 21, 22, 23, 24],
-  [25, 26, 27, 28, 29, 30, 31, 32],
-  [33, 34, 35, 36, 37, 38, 39, 40],
-  [41, 42, 43, 44, 45, 46, 47, 48],
-  [49, 50, 51, 52, 53, 54, 55, 56],
-  [57, 58, 59, 60, 61, 62, 63, 64],
+  [0, 1, 2, 3, 4, 5, 6, 7],
+  [8, 9, 10, 11, 12, 13, 14, 15],
+  [16, 17, 18, 19, 20, 21, 22, 23],
+  [24, 25, 26, 27, 28, 29, 30, 31],
+  [32, 33, 34, 35, 36, 37, 38, 39],
+  [40, 41, 42, 43, 44, 45, 46, 47],
+  [48, 49, 50, 51, 52, 53, 54, 55],
+  [56, 57, 58, 59, 60, 61, 62, 63],
 ];
 
 function gameControl() {
@@ -40,14 +41,32 @@ function gameControl() {
   var currentGrid = "";
   var currentPiece = "";
   var targetGrid = "";
-
+  var turn = "white";
+  // turn black
   boardArr.forEach((grid) => {
     grid.addEventListener("click", (e) => {
       // if a piece is clicked & currentPiece is not yet defined
       if (e.target.src !== undefined && currentPiece === "") {
         currentGrid = e.target.parentNode;
         currentPiece = e.target.getAttribute("src");
+
+        // TURN CHECKER checks if the piece is black (if & else if important in this case)
+        if (
+          (playerCheck(currentPiece) && turn === "white") ||
+          (!playerCheck(currentPiece) && turn === "black")
+        ) {
+          currentPiece = "";
+          if (playerCheck(currentPiece)) turn = "white";
+          if (playerCheck(currentPiece)) turn = "black";
+        } else if (
+          (playerCheck(currentPiece) && turn === "black") ||
+          (!playerCheck(currentPiece) && turn === "white")
+        ) {
+          if (playerCheck(currentPiece)) turn = "white";
+          else if (!playerCheck(currentPiece)) turn = "black";
+        }
       }
+
       // if a piece is clicked & currentPiece is already defined
       else if (e.target.src !== undefined && currentPiece !== "") {
         targetGrid = e.target.parentNode;

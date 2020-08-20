@@ -1,5 +1,5 @@
 // move rules for pawns
-import { indexFinder } from "../movePiece";
+import { indexFinder } from "../indexFinder";
 import { board } from "../index";
 import { playerWhite, playerBlack } from "../players";
 import { pawnAttack } from "../PieceMoves/pawnAttack";
@@ -67,13 +67,15 @@ export function pawnMove(
     }
   }
 
-  pawnAttack(
-    piece,
-    board,
-    boardArr,
-    current_i,
-    current_j,
-    targetIndex,
-    targetGrid
-  );
+  if (board[target_i][target_j] !== undefined) {
+    pawnAttack(
+      piece,
+      board,
+      boardArr,
+      current_i,
+      current_j,
+      targetIndex,
+      targetGrid
+    );
+  }
 }
