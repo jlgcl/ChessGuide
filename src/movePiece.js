@@ -2,6 +2,7 @@ import { board, boardBox } from "./index.js";
 import { playerBlack, playerwhite } from "./players.js";
 import { pawnMove } from "./PieceMoves/pawnMove.js";
 import { castleMove } from "./PieceMoves/castleMove";
+import { knightMove } from "./PieceMoves/knightMove";
 import { pieceCheck } from "./pieceCheck.js";
 
 function movePiece(piece, currentGrid, targetGrid) {
@@ -15,6 +16,15 @@ function movePiece(piece, currentGrid, targetGrid) {
 
   if (pieceName === "castle") {
     castleMove(
+      piece,
+      boardArr,
+      indices.currentIndex,
+      indices.targetIndex,
+      targetGrid
+    );
+  }
+  if (pieceName === "knight") {
+    knightMove(
       piece,
       boardArr,
       indices.currentIndex,

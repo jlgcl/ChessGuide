@@ -1,7 +1,13 @@
 import { playerWhite, playerBlack } from "../players";
-import { board, boardArr } from "../index";
+import { board } from "../index";
 import { indexFinder } from "../indexFinder";
 import { playerCheck } from "./playerCheck";
+import {
+  currentILess,
+  currentIMore,
+  currentJLess,
+  currentJMore,
+} from "./castleMoveLog";
 
 export function castleMove(
   piece,
@@ -15,34 +21,115 @@ export function castleMove(
   let target_i = indexFinder(board, targetIndex).i;
   let target_j = indexFinder(board, targetIndex).j;
   let playerDet = playerCheck(piece);
+  let count = 0;
 
-  if (current_j == target_j) {
-    for (let i = current_i; i < target_i; i++) {
-      if (boardArr[board[i][target_j]].innerHTML == "") {
-        boardArr[currentIndex].innerHTML = "";
-
-        // insert the piece to the target index
-        if (boardArr[currentIndex].innerHTML === "") {
-          let image = document.createElement("img");
-          image.src = piece;
-          boardArr[targetIndex].appendChild(image);
-        }
-      }
+  /// if the column is the same & piece is black ///
+  if (current_j === target_j && playerDet) {
+    // if the current_i is less than target_i
+    if (current_i < target_i) {
+      currentILess(
+        current_i,
+        target_i,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
+    }
+    // if the current_i is larger than target_i
+    else if (current_i > target_i) {
+      currentIMore(
+        current_i,
+        target_i,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
     }
   }
 
-  if (current_i == target_i) {
-    for (let j = current_j; i < target_j; j++) {
-      if (boardArr[board[current_i][j]].innerHTML == "") {
-        boardArr[currentIndex].innerHTML = "";
+  /// if the column is the same & piece is white ///
+  else if (current_j === target_j && !playerDet) {
+    if (current_i > target_i) {
+      currentIMore(
+        current_i,
+        target_i,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
+    } else if (current_i < target_i) {
+      currentILess(
+        current_i,
+        target_i,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
+    }
+  }
 
-        // insert the piece to the target index
-        if (boardArr[currentIndex].innerHTML === "") {
-          let image = document.createElement("img");
-          image.src = piece;
-          boardArr[targetIndex].appendChild(image);
-        }
-      }
+  /// if the row is the same & piece is black ///
+  if (current_i === target_i && playerDet) {
+    if (current_j < target_j) {
+      currentJLess(
+        current_i,
+        current_j,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
+    } else if (current_j > target_j) {
+      currentJMore(
+        current_i,
+        current_j,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
+    }
+  }
+  /// if the row is the same & piece is white ///
+  else if (current_i === target_i && !playerDet) {
+    if (current_j > target_j) {
+      currentJMore(
+        current_i,
+        current_j,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
+    } else if (current_j < target_j) {
+      currentJLess(
+        current_i,
+        current_j,
+        target_j,
+        piece,
+        currentIndex,
+        targetIndex,
+        board,
+        boardArr
+      );
     }
   }
 }
