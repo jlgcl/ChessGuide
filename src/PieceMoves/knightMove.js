@@ -1,6 +1,7 @@
 import { indexFinder } from "../indexFinder";
 import { playerCheck } from "./playerCheck";
 import { board } from "../index.js";
+import { knightAttack } from "./knightAttack";
 
 // STATUS: define moves for two moves horizontal + one move vertical
 export function knightMove(
@@ -21,13 +22,23 @@ export function knightMove(
   let moveUpRight = "";
   let moveDownLeft = "";
   let moveDownRight = "";
+  let moveUpLeftB = "";
+  let moveUpRightB = "";
+  let moveDownLeftB = "";
+  let moveDownRightB = "";
 
-  // define the moves
+  // define the moves (one for 2 verticals & one for 2 horizontals)
   if (
     board[current_i - 2] !== undefined &&
     board[current_i - 2][current_j - 1] !== undefined
   ) {
     moveUpLeft = boardArr[board[current_i - 2][current_j - 1]];
+  }
+  if (
+    board[current_i - 1] !== undefined &&
+    board[current_i - 1][current_j - 2] !== undefined
+  ) {
+    moveUpLeftB = boardArr[board[current_i - 1][current_j - 2]];
   }
   if (
     board[current_i - 2] !== undefined &&
@@ -36,10 +47,22 @@ export function knightMove(
     moveUpRight = boardArr[board[current_i - 2][current_j + 1]];
   }
   if (
+    board[current_i - 1] !== undefined &&
+    board[current_i - 1][current_j + 2] !== undefined
+  ) {
+    moveUpRightB = boardArr[board[current_i - 1][current_j + 2]];
+  }
+  if (
     board[current_i + 2] !== undefined &&
     board[current_i + 2][current_j - 1] !== undefined
   ) {
     moveDownLeft = boardArr[board[current_i + 2][current_j - 1]];
+  }
+  if (
+    board[current_i + 1] !== undefined &&
+    board[current_i + 1][current_j - 2] !== undefined
+  ) {
+    moveDownLeftB = boardArr[board[current_i + 1][current_j - 2]];
   }
   if (
     board[current_i + 2] !== undefined &&
@@ -47,34 +70,30 @@ export function knightMove(
   ) {
     moveDownRight = boardArr[board[current_i + 2][current_j + 1]];
   }
-
-  let moves = [moveUpLeft, moveUpRight, moveDownLeft, moveDownRight];
-  if (moves.find((move) => move === boardArr[targetIndex])) {
-    // move to target location if target location is empty
-    if (boardArr[targetIndex].innerHTML === "") {
-      boardArr[currentIndex].innerHTML = "";
-
-      // insert the piece to the target index
-      let image = document.createElement("img");
-      image.src = piece;
-      boardArr[targetIndex].appendChild(image);
-    }
-    // move and attack the target piece if target location is occupied by enemy piece
-    else if (
-      boardArr[targetIndex].innerHTML !== "" &&
-      boardArr[targetIndex].childNodes[0].getAttribute("src") !== undefined
-    ) {
-      targetPiece = boardArr[targetIndex].childNodes[0].getAttribute("src");
-      if (
-        (playerCheck(piece) && !playerCheck(targetPiece)) ||
-        (!playerCheck(piece) && playerCheck(targetPiece))
-      ) {
-        boardArr[currentIndex].innerHTML = "";
-        boardArr[targetIndex].innerHTML = "";
-        let image = document.createElement("img");
-        image.src = piece;
-        boardArr[targetIndex].appendChild(image);
-      }
-    }
+  if (
+    board[current_i + 1] !== undefined &&
+    board[current_i + 1][current_j + 2] !== undefined
+  ) {
+    moveDownRightB = boardArr[board[current_i + 1][current_j + 2]];
   }
+
+  let moves = [
+    moveUpLeft,
+    moveUpRight,
+    moveDownLeft,
+    moveDownRight,
+    moveUpLeftB,
+    moveUpRightB,
+    moveDownLeftB,
+    moveDownRightB,
+  ];
+  knightAttack(
+    moves,
+    board,
+    boardArr,
+    currentIndex,
+    targetIndex,
+    piece,
+    targetPiece
+  );
 }

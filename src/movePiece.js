@@ -1,8 +1,11 @@
 import { board, boardBox } from "./index.js";
 import { playerBlack, playerwhite } from "./players.js";
 import { pawnMove } from "./PieceMoves/pawnMove.js";
+import { queenMove } from "./PieceMoves/queenMove.js";
 import { castleMove } from "./PieceMoves/castleMove";
 import { knightMove } from "./PieceMoves/knightMove";
+import { bishopMove } from "./PieceMoves/bishopMove";
+import { kingMove } from "./PieceMoves/kingMove";
 import { pieceCheck } from "./pieceCheck.js";
 
 function movePiece(piece, currentGrid, targetGrid) {
@@ -14,14 +17,29 @@ function movePiece(piece, currentGrid, targetGrid) {
   pieceName = "";
   pieceName = pieceCheck(piece);
 
-  if (pieceName === "castle") {
-    castleMove(
+  if (pieceName === "king") {
+    kingMove(piece, boardArr, indices.currentIndex, indices.targetIndex);
+  }
+  if (pieceName === "queen") {
+    queenMove(
       piece,
       boardArr,
       indices.currentIndex,
       indices.targetIndex,
       targetGrid
     );
+  }
+  if (pieceName === "bishop") {
+    bishopMove(
+      piece,
+      boardArr,
+      indices.currentIndex,
+      indices.targetIndex,
+      targetGrid
+    );
+  }
+  if (pieceName === "castle") {
+    castleMove(piece, boardArr, indices.currentIndex, indices.targetIndex);
   }
   if (pieceName === "knight") {
     knightMove(

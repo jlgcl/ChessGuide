@@ -1,6 +1,8 @@
 import { playerwhite } from "../players.js";
 import { pawnAttackMove } from "./pawnAttackMove";
 
+// defines target locations
+
 export function pawnAttack(
   piece,
   board,

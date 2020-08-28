@@ -1,6 +1,8 @@
 import { playerCheck } from "./playerCheck";
 import { board } from "../index";
 
+// defines conditions for attack & attacking operation
+
 export function pawnAttackMove(
   piece,
   current_i,
@@ -17,10 +19,14 @@ export function pawnAttackMove(
   whiteAttackTarget_b
 ) {
   // if the one of the target is defined (one is out of range) OR both are defined (points are not out of range)
-  // check: if target piece is black/not, target grid is not empty, target grid is top-right/top-left of the current location
+  // check: if the current piece is black/white, if target piece is black/not, target grid is not empty, target grid is top-right/top-left of the current location
 
-  // target piece is white
-  if (blackAttackTarget_a !== "" && blackAttackTarget_b !== "") {
+  // current piece is black & target piece is white
+  if (
+    blackAttackTarget_a !== "" &&
+    blackAttackTarget_b !== "" &&
+    playerCheck(piece)
+  ) {
     if (
       (!playerCheck(blackTargetPiece_a) || !playerCheck(blackTargetPiece_b)) &&
       (boardArr[blackAttackTarget_a].innerHTML !== "" ||
@@ -28,13 +34,20 @@ export function pawnAttackMove(
       (boardArr[targetIndex] === boardArr[blackAttackTarget_a] ||
         boardArr[targetIndex] === boardArr[blackAttackTarget_b])
     ) {
+      console.log("test1");
       boardArr[board[current_i][current_j]].innerHTML = "";
       boardArr[targetIndex].innerHTML = "";
       let image = document.createElement("img");
       image.src = piece;
       boardArr[targetIndex].appendChild(image);
     }
-  } else if (blackAttackTarget_a !== "" && blackAttackTarget_b === "") {
+  }
+  // checks if any of the target locations are empty with no pieces
+  else if (
+    blackAttackTarget_a !== "" &&
+    blackAttackTarget_b === "" &&
+    playerCheck(piece)
+  ) {
     if (
       !playerCheck(blackTargetPiece_a) &&
       boardArr[blackAttackTarget_a].innerHTML !== "" &&
@@ -46,7 +59,11 @@ export function pawnAttackMove(
       image.src = piece;
       boardArr[targetIndex].appendChild(image);
     }
-  } else if (blackAttackTarget_a === "" && blackAttackTarget_b !== "") {
+  } else if (
+    blackAttackTarget_a === "" &&
+    blackAttackTarget_b !== "" &&
+    playerCheck(piece)
+  ) {
     if (
       !playerCheck(blackTargetPiece_b) &&
       boardArr[blackAttackTarget_b].innerHTML !== "" &&
@@ -60,7 +77,12 @@ export function pawnAttackMove(
     }
   }
 
-  if (whiteAttackTarget_a !== "" && whiteAttackTarget_b !== "") {
+  // current piece is white & target piece is black
+  if (
+    whiteAttackTarget_a !== "" &&
+    whiteAttackTarget_b !== "" &&
+    !playerCheck(piece)
+  ) {
     if (
       (playerCheck(whiteTargetPiece_a) || playerCheck(whiteTargetPiece_b)) &&
       (boardArr[whiteAttackTarget_a].innerHTML !== "" ||
@@ -68,13 +90,19 @@ export function pawnAttackMove(
       (boardArr[targetIndex] === boardArr[whiteAttackTarget_a] ||
         boardArr[targetIndex] === boardArr[whiteAttackTarget_b])
     ) {
+      console.log("test2");
+
       boardArr[board[current_i][current_j]].innerHTML = "";
       boardArr[targetIndex].innerHTML = "";
       let image = document.createElement("img");
       image.src = piece;
       boardArr[targetIndex].appendChild(image);
     }
-  } else if (whiteAttackTarget_a !== "" && whiteAttackTarget_b === "") {
+  } else if (
+    whiteAttackTarget_a !== "" &&
+    whiteAttackTarget_b === "" &&
+    !playerCheck(piece)
+  ) {
     if (
       playerCheck(whiteTargetPiece_a) &&
       boardArr[whiteAttackTarget_a].innerHTML !== "" &&
@@ -86,7 +114,11 @@ export function pawnAttackMove(
       image.src = piece;
       boardArr[targetIndex].appendChild(image);
     }
-  } else if (whiteAttackTarget_a === "" && whiteAttackTarget_b !== "") {
+  } else if (
+    whiteAttackTarget_a === "" &&
+    whiteAttackTarget_b !== "" &&
+    !playerCheck(piece)
+  ) {
     if (
       playerCheck(whiteTargetPiece_b) &&
       boardArr[whiteAttackTarget_b].innerHTML !== "" &&
