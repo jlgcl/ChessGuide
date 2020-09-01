@@ -72,6 +72,11 @@ function gameControl() {
         targetGrid = e.target.parentNode;
         //console.log(currentGrid, currentPiece, targetGrid);
         movePiece(currentPiece, currentGrid, targetGrid);
+        // the piece must have been moved to switch turns; if not, keep the turn
+        if (currentGrid.innerHTML !== "") {
+          if (turn === "white") turn = "black";
+          else if (turn === "black") turn = "white";
+        }
         currentPiece = "";
         currentGrid = "";
         targetGrid = "";
@@ -81,6 +86,11 @@ function gameControl() {
         targetGrid = e.target;
         //console.log(currentGrid, currentPiece, targetGrid);
         movePiece(currentPiece, currentGrid, targetGrid);
+        // the piece must have been moved to switch turns; if not, keep the turn
+        if (currentGrid.innerHTML !== "") {
+          if (turn === "white") turn = "black";
+          else if (turn === "black") turn = "white";
+        }
         // resets the selections to avoid creating piece at new target
         currentPiece = "";
         currentGrid = "";
