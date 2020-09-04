@@ -1,14 +1,9 @@
-import { playerCheck } from "./playerCheck";
+import {
+  playerCheck
+} from "./playerCheck";
 
-export function knightAttack(
-  moves,
-  board,
-  boardArr,
-  currentIndex,
-  targetIndex,
-  piece,
-  targetPiece
-) {
+export function knightAttack(moves, board, boardArr, currentIndex,
+  targetIndex, piece, targetPiece) {
   if (moves.find((move) => move === boardArr[targetIndex])) {
     // move to target location if target location is empty
     if (boardArr[targetIndex].innerHTML === "") {

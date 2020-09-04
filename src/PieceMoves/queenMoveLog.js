@@ -1,17 +1,13 @@
 // functions to move the castle pieces
-import { playerCheck } from "./playerCheck";
-import { queenStraightAttack } from "./queenAttack";
+import {
+  playerCheck
+} from "./playerCheck";
+import {
+  queenStraightAttack
+} from "./queenAttack";
 
-function currentILess(
-  current_i,
-  target_i,
-  target_j,
-  piece,
-  currentIndex,
-  targetIndex,
-  board,
-  boardArr
-) {
+function currentILess(current_i, target_i, target_j, piece,
+  currentIndex, targetIndex, board, boardArr) {
   let count = 0;
   // increment counter if the grid between current to target is empty
   for (let i = current_i; i < target_i; i++) {
@@ -41,16 +37,8 @@ function currentILess(
   }
 }
 
-function currentIMore(
-  current_i,
-  target_i,
-  target_j,
-  piece,
-  currentIndex,
-  targetIndex,
-  board,
-  boardArr
-) {
+function currentIMore(current_i, target_i, target_j, piece, currentIndex,
+  targetIndex, board, boardArr) {
   let count = 0;
   for (let i = current_i; i > target_i; i--) {
     // counter to check if all the cells between target_j - current_j have no piece.
@@ -77,16 +65,8 @@ function currentIMore(
   }
 }
 
-function currentJLess(
-  current_i,
-  current_j,
-  target_j,
-  piece,
-  currentIndex,
-  targetIndex,
-  board,
-  boardArr
-) {
+function currentJLess(current_i, current_j, target_j, piece,
+  currentIndex, targetIndex, board, boardArr) {
   let count = 0;
   for (let j = current_j; j < target_j; j++) {
     if (boardArr[board[current_i][j]].innerHTML === "") {
@@ -112,16 +92,8 @@ function currentJLess(
   }
 }
 
-function currentJMore(
-  current_i,
-  current_j,
-  target_j,
-  piece,
-  currentIndex,
-  targetIndex,
-  board,
-  boardArr
-) {
+function currentJMore(current_i, current_j, target_j, piece,
+  currentIndex, targetIndex, board, boardArr) {
   let count = 0;
   for (let j = current_j; j > target_j; j--) {
     if (boardArr[board[current_i][j]].innerHTML === "") {
@@ -146,4 +118,9 @@ function currentJMore(
   }
 }
 
-export { currentILess, currentIMore, currentJLess, currentJMore };
+export {
+  currentILess,
+  currentIMore,
+  currentJLess,
+  currentJMore
+};

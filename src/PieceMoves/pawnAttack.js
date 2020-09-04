@@ -1,17 +1,14 @@
-import { playerwhite } from "../players.js";
-import { pawnAttackMove } from "./pawnAttackMove";
+import {
+  playerwhite
+} from "../players.js";
+import {
+  pawnAttackMove
+} from "./pawnAttackMove";
 
 // defines target locations
 
-export function pawnAttack(
-  piece,
-  board,
-  boardArr,
-  current_i,
-  current_j,
-  targetIndex,
-  targetGrid
-) {
+export function pawnAttack(piece, board, boardArr, current_i, current_j,
+  targetIndex, targetGrid) {
   let blackAttackTarget_a = "";
   let blackAttackTarget_b = "";
   let whiteAttackTarget_a = "";
@@ -69,19 +66,7 @@ export function pawnAttack(
     ].childNodes[0].getAttribute("src");
   }
 
-  pawnAttackMove(
-    piece,
-    current_i,
-    current_j,
-    boardArr,
-    targetIndex,
-    blackTargetPiece_a,
-    blackTargetPiece_b,
-    whiteTargetPiece_a,
-    whiteTargetPiece_b,
-    blackAttackTarget_a,
-    blackAttackTarget_b,
-    whiteAttackTarget_a,
-    whiteAttackTarget_b
-  );
+  pawnAttackMove(piece, current_i, current_j, boardArr, targetIndex,
+    blackTargetPiece_a, blackTargetPiece_b, whiteTargetPiece_a, whiteTargetPiece_b,
+    blackAttackTarget_a, blackAttackTarget_b, whiteAttackTarget_a, whiteAttackTarget_b);
 }

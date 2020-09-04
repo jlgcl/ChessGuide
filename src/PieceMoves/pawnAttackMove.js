@@ -1,23 +1,15 @@
-import { playerCheck } from "./playerCheck";
-import { board } from "../index";
+import {
+  playerCheck
+} from "./playerCheck";
+import {
+  board
+} from "../index";
 
 // defines conditions for attack & attacking operation
 
-export function pawnAttackMove(
-  piece,
-  current_i,
-  current_j,
-  boardArr,
-  targetIndex,
-  blackTargetPiece_a,
-  blackTargetPiece_b,
-  whiteTargetPiece_a,
-  whiteTargetPiece_b,
-  blackAttackTarget_a,
-  blackAttackTarget_b,
-  whiteAttackTarget_a,
-  whiteAttackTarget_b
-) {
+export function pawnAttackMove(piece, current_i, current_j, boardArr, targetIndex,
+  blackTargetPiece_a, blackTargetPiece_b, whiteTargetPiece_a, whiteTargetPiece_b,
+  blackAttackTarget_a, blackAttackTarget_b, whiteAttackTarget_a, whiteAttackTarget_b) {
   /// CREATE GENERIC FUNCTION TO GENERATE MOVEMENTS ///
 
   // if the one of the target is defined (one is out of range) OR both are defined (points are not out of range)

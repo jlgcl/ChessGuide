@@ -1,13 +1,10 @@
-const { playerCheck } = require("./playerCheck");
+const {
+  playerCheck
+} = require("./playerCheck");
 
 // attack moves for castle pieces
 
-export function queenStraightAttack(
-  piece,
-  boardArr,
-  currentIndex,
-  targetIndex
-) {
+export function queenStraightAttack(piece, boardArr, currentIndex, targetIndex) {
   // if the current piece is black
   if (playerCheck(piece)) {
     // if the target piece is white

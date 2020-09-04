@@ -1,7 +1,15 @@
-import { indexFinder } from "../indexFinder";
-import { playerCheck } from "./playerCheck";
-import { board } from "../index.js";
-import { knightAttack } from "./knightAttack";
+import {
+  indexFinder
+} from "../indexFinder";
+import {
+  playerCheck
+} from "./playerCheck";
+import {
+  board
+} from "../index.js";
+import {
+  knightAttack
+} from "./knightAttack";
 
 // STATUS: define moves for two moves horizontal + one move vertical
 export function knightMove(
@@ -13,19 +21,10 @@ export function knightMove(
 ) {
   let current_i = indexFinder(board, currentIndex).i;
   let current_j = indexFinder(board, currentIndex).j;
-  let target_i = indexFinder(board, targetIndex).i;
-  let target_j = indexFinder(board, targetIndex).j;
   let targetPiece = "";
 
   // initialize possible move locations
-  let moveUpLeft = "";
-  let moveUpRight = "";
-  let moveDownLeft = "";
-  let moveDownRight = "";
-  let moveUpLeftB = "";
-  let moveUpRightB = "";
-  let moveDownLeftB = "";
-  let moveDownRightB = "";
+  let moveUpLeft, moveUpRight, moveDownLeft, moveDownRight, moveUpLeftB, moveUpRightB, moveDownLeftB, moveDownRightB = "";
 
   // define the moves (one for 2 verticals & one for 2 horizontals)
   if (
@@ -77,23 +76,9 @@ export function knightMove(
     moveDownRightB = boardArr[board[current_i + 1][current_j + 2]];
   }
 
-  let moves = [
-    moveUpLeft,
-    moveUpRight,
-    moveDownLeft,
-    moveDownRight,
-    moveUpLeftB,
-    moveUpRightB,
-    moveDownLeftB,
-    moveDownRightB,
+  let moves = [moveUpLeft, moveUpRight, moveDownLeft, moveDownRight, moveUpLeftB,
+    moveUpRightB, moveDownLeftB, moveDownRightB,
   ];
-  knightAttack(
-    moves,
-    board,
-    boardArr,
-    currentIndex,
-    targetIndex,
-    piece,
-    targetPiece
-  );
+  knightAttack(moves, board, boardArr, currentIndex, targetIndex,
+    piece, targetPiece);
 }

@@ -13,10 +13,19 @@
         - create player objects containing # of pieces & # of downpieces.
 */
 
-import { initialPlacement } from "./initialPlacement";
-import { playerBlack, playerWhite } from "./players";
-import { movePiece } from "./movePiece";
-import { playerCheck } from "./PieceMoves/playerCheck";
+import {
+  initialPlacement
+} from "./initialPlacement";
+import {
+  playerBlack,
+  playerWhite
+} from "./players";
+import {
+  movePiece
+} from "./movePiece";
+import {
+  playerCheck
+} from "./PieceMoves/playerCheck";
 
 var boardBox = document.getElementsByClassName("grid-item");
 
@@ -32,10 +41,10 @@ var board = [
   [56, 57, 58, 59, 60, 61, 62, 63],
 ];
 
+var boardArr = Array.from(boardBox);
+
 function gameControl() {
   initialPlacement();
-
-  var boardArr = Array.from(boardBox);
 
   // currentGrid (origin) & targetGrid (target)
   var currentGrid = "";
@@ -43,6 +52,7 @@ function gameControl() {
   var targetGrid = "";
   var turn = "white";
   // turn black
+
   boardArr.forEach((grid) => {
     grid.addEventListener("click", (e) => {
       // if a piece is clicked & currentPiece is not yet defined
@@ -70,7 +80,6 @@ function gameControl() {
       // if a piece is clicked & currentPiece is already defined
       else if (e.target.src !== undefined && currentPiece !== "") {
         targetGrid = e.target.parentNode;
-        //console.log(currentGrid, currentPiece, targetGrid);
         movePiece(currentPiece, currentGrid, targetGrid);
         // the piece must have been moved to switch turns; if not, keep the turn
         if (currentGrid.innerHTML !== "") {
@@ -84,7 +93,6 @@ function gameControl() {
       // if an empty grid is clicked
       if (e.target.src === undefined && currentPiece !== "") {
         targetGrid = e.target;
-        //console.log(currentGrid, currentPiece, targetGrid);
         movePiece(currentPiece, currentGrid, targetGrid);
         // the piece must have been moved to switch turns; if not, keep the turn
         if (currentGrid.innerHTML !== "") {
@@ -102,4 +110,8 @@ function gameControl() {
 
 gameControl();
 
-export { board, boardBox };
+export {
+  board,
+  boardBox,
+  boardArr
+};
